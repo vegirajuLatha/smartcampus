@@ -1,0 +1,33 @@
+Here is a clear summary of the content:
+
+**Summary:** Latha Vegiraju is a recent graduate in Information Technology looking for a full-time role that leverages her interpersonal skills, time management, and problem-solving expertise.
+
+**Experience:**
+
+* Interned at StaidLogic as an AWS Intern from May to July 2025, where she worked on two projects:
+	+ AI Assistant: Developed an AI-powered assistant using Python, Django, and Generative AI for resume matching and SQL support.
+	+ Vital Monitor: Created a real-time health monitoring system using HTML, CSS, JavaScript, and React.js, with personalized recommendations for proactive wellness tracking.
+
+**Skills:**
+
+* Programming languages: Python, Java, HTML, CSS, MySQL
+* Cloud infrastructure: AWS EC2, IAM
+* Database: Database Foundations - Oracle Academy
+* Certifications: Java Programming Fundamentals - Infosys Springboard
+* Other skills: Generative AI, SQL, React.js, Django
+
+**Achievements:**
+
+* Wonder Book of Records Holder for a singing performance
+* Selected for Girls Wanna Code (GWC) Mentorship by Flipkart
+
+**Education:**
+
+* B.Tech in Information Technology from Shri Vishnu Engineering College for Women (2022-2026)
+* 12th from Tirumala Junior College (2020-2022)
+* 10th from Sri Prakash Vidyaniketan (2018-2020)
+
+**Social Media:**
+
+* LinkedIn: https://www.linkedin.com/in/latha-vegiraju-90b0a6257/
+* GitHub: https://github.com/vegirajuLatha

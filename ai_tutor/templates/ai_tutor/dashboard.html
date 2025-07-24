@@ -1,0 +1,67 @@
+{% extends 'ai_tutor\base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-primary">🤖 AI Tutor Dashboard</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <div class="col">
+            <a href="{% url 'chat' %}" class="text-decoration-none">
+                <div class="card card-dashboard h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">💬 Chat Tutor</h5>
+                        <p class="card-text">Ask questions and get answers instantly using AI chat.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+            <a href="{% url 'voice_input' %}" class="text-decoration-none">
+                <div class="card card-dashboard h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">🎙 Voice Q&A</h5>
+                        <p class="card-text">Speak your question and let AI answer it in real-time.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+            <a href="{% url 'summarize' %}" class="text-decoration-none">
+                <div class="card card-dashboard h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">📄 Summarize Notes</h5>
+                        <p class="card-text">Upload a document and get a summary instantly.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+            <a href="{% url 'quiz_generator' %}" class="text-decoration-none">
+                <div class="card card-dashboard h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">📝 Quiz Generator</h5>
+                        <p class="card-text">Generate practice questions from any topic or note.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<style>
+.card-dashboard {
+    border-radius: 12px;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-dashboard:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+</style>
+
+{% endblock %}

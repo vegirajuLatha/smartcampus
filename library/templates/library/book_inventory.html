@@ -1,0 +1,88 @@
+{% extends 'library\base.html' %}
+{% block content %}
+
+<style>
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  .cover-img {
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+</style>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">📚 Book Inventory</h2>
+    {% if user.is_staff %}
+      <a href="{% url 'add-book' %}" class="btn btn-primary btn-sm">➕ Add New Book</a>
+    {% endif %}
+  </div>
+
+  <!-- Search/Filter Form -->
+  <form method="get" class="row g-2 mb-4">
+    <div class="col-md-5">
+      <input type="text" name="q" class="form-control" placeholder="Search by title or author" value="{{ request.GET.q }}">
+    </div>
+    <div class="col-md-4">
+      <input type="text" name="category" class="form-control" placeholder="Filter by category" value="{{ request.GET.category }}">
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-outline-secondary w-100">🔍 Search</button>
+    </div>
+  </form>
+
+  <!-- Book Table -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle shadow-sm">
+      <thead class="table-light">
+        <tr>
+          <th>📖 Title</th>
+          <th>✍️ Author</th>
+          <th>🏷️ Category</th>
+          <th>✅ Available</th>
+          <th>🖼️ Cover</th>
+          {% if user.is_staff %}<th>⚙️ Actions</th>{% else %}<th>📦 Borrow</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in books %}
+        <tr>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.category }}</td>
+          <td>
+            {% if book.is_available %}
+              <span class="badge bg-success">Available</span>
+            {% else %}
+              <span class="badge bg-danger">Not Available</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if book.cover_image %}
+              <img src="{{ book.cover_image.url }}" class="cover-img" alt="Cover">
+            {% else %}
+              <span class="text-muted">No Cover</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if user.is_staff %}
+              <a href="{% url 'edit-book' book.pk %}" class="btn btn-sm btn-warning me-1">✏️ Edit</a>
+              <a href="{% url 'delete-book' book.pk %}" class="btn btn-sm btn-danger">🗑️ Delete</a>
+            {% else %}
+              {% if book.is_available %}
+                <a href="{% url 'borrow-book' book.pk %}" class="btn btn-sm btn-success">Borrow</a>
+              {% else %}
+                <span class="text-danger">Not Available</span>
+              {% endif %}
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

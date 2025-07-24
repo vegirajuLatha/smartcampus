@@ -1,0 +1,67 @@
+{% extends 'ai_tutor/base.html' %}
+
+{% block content %}
+<style>
+  .quiz-form-container {
+    max-width: 700px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .quiz-form-title {
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #0d6efd;
+    text-align: center;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .btn-primary {
+    width: 100%;
+    font-weight: 600;
+    padding: 10px;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 1rem;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="quiz-form-container">
+    <h3 class="quiz-form-title">🧠 Quiz Generator</h3>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="syllabus" class="form-label">Upload Syllabus (PDF/Excel)</label>
+        <input type="file" class="form-control" name="syllabus" id="syllabus" required>
+      </div>
+      <div class="mb-3">
+        <label for="topic" class="form-label">Topic</label>
+        <input type="text" class="form-control" name="topic" id="topic" value="{{ topic }}" required>
+      </div>
+      <div class="mb-4">
+        <label for="count" class="form-label">Number of Questions</label>
+        <input type="number" class="form-control" name="count" id="count" value="3" min="1" max="10" required>
+      </div>
+      <button type="submit" class="btn btn-primary">🚀 Generate Quiz</button>
+    </form>
+
+    {% if questions %}
+      <hr class="my-4">
+      <h5 class="text-success mb-3">✅ Generated Questions:</h5>
+      <pre class="bg-light p-3 rounded border">{{ questions }}</pre>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

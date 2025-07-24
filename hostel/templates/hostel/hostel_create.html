@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Add Hostel</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save Hostel</button>
+    <a href="{% url 'hostel_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+  </form>
+</div>
+{% endblock %}

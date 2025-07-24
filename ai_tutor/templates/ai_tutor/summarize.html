@@ -1,0 +1,73 @@
+{% extends 'ai_tutor/base.html' %}
+
+{% block content %}
+<style>
+  .summarize-container {
+    max-width: 700px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+  }
+
+  .summarize-title {
+    font-weight: 600;
+    font-size: 1.75rem;
+    color: #0d6efd;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .btn-primary {
+    width: 100%;
+    font-weight: 600;
+  }
+
+  .summary-box {
+    background-color: #f8f9fa;
+    padding: 1.2rem;
+    border-left: 5px solid #0d6efd;
+    border-radius: 0.5rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .download-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="summarize-container">
+    <h3 class="summarize-title">📄 Summarize Document</h3>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-4">
+        <label for="document" class="form-label">Upload PDF or Excel File</label>
+        <input type="file" class="form-control" name="document" id="document" required>
+      </div>
+      <button type="submit" class="btn btn-primary">🧠 Summarize</button>
+    </form>
+
+    {% if summary %}
+      <hr class="my-4">
+      <h5 class="text-success">📝 Generated Summary:</h5>
+      <div class="summary-box">{{ summary }}</div>
+
+      {% if summarized_file_url %}
+        <a href="{{ summarized_file_url }}" class="btn btn-outline-success download-btn" download>
+          ⬇ Download Summary
+        </a>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

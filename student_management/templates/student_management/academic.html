@@ -1,0 +1,32 @@
+{% extends 'student_management/base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>📚 Academic Records</h2>
+  {% if performance %}
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Semester</th>
+          <th>Subject</th>
+          <th>Marks Obtained</th>
+          <th>Max Marks</th>
+          <th>Percentage (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in performance %}
+        <tr>
+          <td>{{ record.semester }}</td>
+          <td>{{ record.subject }}</td>
+          <td>{{ record.marks_obtained }}</td>
+          <td>{{ record.max_marks }}</td>
+          <td>{{ record.percentage }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No academic records found.</p>
+  {% endif %}
+</div>
+{% endblock %}

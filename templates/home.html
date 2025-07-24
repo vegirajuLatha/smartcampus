@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Smart Campus Home{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1 class="mb-4 text-primary">🎓 Welcome to Smart Campus</h1>
+    <p class="lead">Please choose a module to continue:</p>
+
+    <div class="d-grid gap-3 col-6 mx-auto mt-4">
+
+        <a href="{% url 'ai_dashboard' %}" class="btn btn-primary btn-lg">
+            🤖 AI Tutor
+        </a>
+
+        <a href="{% url 'library_dashboard' %}" class="btn btn-success btn-lg">
+            📚 Library Management
+        </a>
+
+        <a href="{% url 'hostel_dashboard' %}" class="btn btn-info btn-lg text-white">
+            🏢 Hostel Management
+        </a>
+
+        <a href="{% url 'student_dashboard' %}" class="btn btn-warning btn-lg text-dark">
+            🎓 Student Management
+        </a>
+
+    </div>
+</div>
+{% endblock %}

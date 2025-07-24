@@ -1,0 +1,54 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-primary">📚 Borrow & Return Books</h2>
+
+    <!-- Book Borrow/Return Form -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-info text-white">
+            Select a Book to Borrow or Return
+        </div>
+        <div class="card-body">
+            <form method="POST" class="row g-3">
+                {% csrf_token %}
+                <div class="col-md-8">
+                    <label for="book_id" class="form-label fw-bold">Book Title</label>
+                    <select name="book_id" id="book_id" class="form-select" required>
+                        <option value="" disabled selected>-- Choose a book --</option>
+                        {% for book in books %}
+                            <option value="{{ book.id }}">{{ book.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" name="action" value="borrow" class="btn btn-success me-2">Borrow</button>
+                    <button type="submit" name="action" value="return" class="btn btn-warning">Return</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Borrowed Books List -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white">
+            Your Borrowed Books
+        </div>
+        <div class="card-body">
+            {% if borrowed_books %}
+                <ul class="list-group">
+                    {% for borrowed in borrowed_books %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>
+                                <strong>{{ borrowed.book.title }}</strong>
+                                <small class="text-muted">(Borrowed on {{ borrowed.borrowed_date|date:"M d, Y" }})</small>
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="alert alert-info mb-0">You have no books currently borrowed.</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

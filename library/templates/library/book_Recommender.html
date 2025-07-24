@@ -1,0 +1,34 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-3 text-primary">📚 Book Recommender</h2>
+
+    <form method="get" class="mb-4 d-flex">
+        <input type="text" name="genre" class="form-control me-2" placeholder="Enter genre (e.g., Fiction, Sci-Fi, Romance)" value="{{ genre_input }}">
+        <button type="submit" class="btn btn-outline-primary">Recommend</button>
+    </form>
+
+    <h5 class="text-muted">{{ context_msg }}</h5>
+
+    {% if recommended_books %}
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+        {% for book in recommended_books %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                {% if book.cover_image %}
+                <img src="{{ book.cover_image.url }}" class="card-img-top" alt="{{ book.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                    <p class="card-text"><strong>Genre:</strong> {{ book.category }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <div class="alert alert-warning mt-4">No books found in this genre.</div>
+    {% endif %}
+</div>
+{% endblock %}

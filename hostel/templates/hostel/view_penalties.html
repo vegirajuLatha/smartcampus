@@ -1,0 +1,30 @@
+{% extends 'hostel\base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">⚖️ View Penalties</h2>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Student</th>
+                <th>Reason</th>
+                <th>Amount</th>
+                <th>Issued On</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for penalty in penalties %}
+            <tr>
+                <td>{{ penalty.student.user.username }}</td>
+                <td>{{ penalty.reason }}</td>
+                <td>₹{{ penalty.amount }}</td>
+                <td>{{ penalty.date_issued }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No penalties found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'student_management/base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h3>📅 Attendance Records</h3>
+  {% if records %}
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr><th>Date</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        {% for rec in records %}
+          <tr>
+            <td>{{ rec.date }}</td>
+            <td>{{ rec.status }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No attendance records found.</p>
+  {% endif %}
+</div>
+{% endblock %}

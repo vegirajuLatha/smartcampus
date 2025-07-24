@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .full-center {
+    min-height: calc(100vh - 70px); /* Adjust for navbar height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 2rem;
+  }
+
+  .dashboard-title {
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #343a40;
+  }
+
+  .card-dashboard {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 0.75rem;
+    background-color: #ffffff;
+  }
+
+  .card-dashboard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #212529;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    color: #6c757d;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #007bff;
+  }
+</style>
+
+<div class="full-center">
+  <div class="container">
+    <h2 class="dashboard-title text-center">🏨 Hostel Dashboard</h2>
+
+    <div class="row justify-content-center row-cols-1 row-cols-md-2 g-4">
+      {% if user.is_superuser %}
+        <!-- ADMIN Cards -->
+        <div class="col">
+          <a href="{% url 'view_complaints' %}" class="text-decoration-none">
+            <div class="card card-dashboard h-100 text-center">
+              <div class="card-body">
+                <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                <h5 class="card-title">View Complaints</h5>
+                <p class="card-text">Check and manage student complaints submitted to the hostel office.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="{% url 'add_penalty' %}" class="text-decoration-none">
+            <div class="card card-dashboard h-100 text-center">
+              <div class="card-body">
+                <div class="card-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <h5 class="card-title">Add Penalties</h5>
+                <p class="card-text">Issue penalties to students for violations of hostel rules.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="{% url 'add_visitor' %}" class="text-decoration-none">
+            <div class="card card-dashboard h-100 text-center">
+              <div class="card-body">
+                <div class="card-icon"><i class="fas fa-user-plus"></i></div>
+                <h5 class="card-title">Add Visitors</h5>
+                <p class="card-text">Log and track visitor entries to the hostel premises.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="{% url 'view_visitors' %}" class="text-decoration-none">
+            <div class="card card-dashboard h-100 text-center">
+              <div class="card-body">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <h5 class="card-title">View Visitors</h5>
+                <p class="card-text">Browse visitor logs and records.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      {% else %}
+        <!-- STUDENT Cards -->
+        <div class="col">
+          <a href="{% url 'submit_complaint' %}" class="text-decoration-none">
+            <div class="card card-dashboard h-100 text-center">
+              <div class="card-body">
+                <div class="card-icon"><i class="fas fa-comment-dots"></i></div>
+                <h5 class="card-title">Submit Complaint</h5>
+                <p class="card-text">Raise an issue related to your hostel experience.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="{% url 'view_penalties' %}" class="text-decoration-none">
+            <div class="card card-dashboard h-100 text-center">
+              <div class="card-body">
+                <div class="card-icon"><i class="fas fa-gavel"></i></div>
+                <h5 class="card-title">View Penalties</h5>
+                <p class="card-text">Check penalties issued against your hostel account.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

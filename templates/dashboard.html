@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Welcome to Smart Campus{% endblock %}
+
+{% block content %}
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+  }
+
+  .vh-100-fixed {
+    height: calc(100vh - 80px); /* Adjust for navbar height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+<div class="vh-100-fixed bg-light">
+    <div class="text-center">
+        <h1 class="mb-4 display-4">🎓 Welcome to Smart Campus</h1>
+        <p class="lead mb-5">Please choose a module to continue:</p>
+
+        <div class="d-grid gap-3 col-8 mx-auto">
+            <a href="{% url 'ai_tutor_dashboard' %}" class="btn btn-primary btn-lg">🤖 AI Tutor</a>
+            <a href="{% url 'library-dashboard' %}" class="btn btn-success btn-lg">📚 Library Management</a>
+            <a href="{% url 'hostel-dashboard' %}" class="btn btn-info btn-lg">🏨 Hostel Management</a>
+            <a href="{% url 'student-dashboard' %}" class="btn btn-primary btn-lg">🎓 Student Management</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Attendance - Face Recognition</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h2 {
+      color: #004080;
+      margin-bottom: 20px;
+    }
+
+    video {
+      border: 3px solid #004080;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    button {
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #002d59;
+    }
+
+    .note {
+      margin-top: 10px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    form {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Face Recognition Attendance</h2>
+
+  <!-- Webcam feed -->
+  <video id="video" width="320" height="240" autoplay></video>
+
+  <!-- Button to capture and submit -->
+  <button id="snap">Mark Attendance</button>
+  <p class="note">Please look into the camera and click the button above.</p>
+
+  <!-- Hidden form for submission -->
+  <form id="loginForm" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="image_data" id="image_data">
+    <input type="hidden" name="latitude" id="latitude">
+    <input type="hidden" name="longitude" id="longitude">
+  </form>
+
+  <script>
+    const video = document.getElementById('video');
+    const snapBtn = document.getElementById('snap');
+    const imageInput = document.getElementById('image_data');
+    const latInput = document.getElementById('latitude');
+    const lonInput = document.getElementById('longitude');
+
+    // Start camera
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => video.srcObject = stream)
+      .catch(() => alert("Unable to access camera. Please allow webcam permission."));
+
+    // Get location
+    navigator.geolocation.getCurrentPosition(pos => {
+      latInput.value = pos.coords.latitude;
+      lonInput.value = pos.coords.longitude;
+    }, () => {
+      alert("Unable to fetch location.");
+    });
+
+    // Take snapshot and submit
+    snapBtn.onclick = function () {
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0);
+      imageInput.value = canvas.toDataURL('image/jpeg');
+      document.getElementById('loginForm').submit();
+    }
+  </script>
+</body>
+</html>

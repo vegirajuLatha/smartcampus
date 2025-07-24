@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">🎓 Student Management Dashboard</h2>
+
+  <div class="d-flex flex-column align-items-center gap-3">
+
+    <a href="{% url 'student_profile' %}" class="btn btn-outline-dark btn-lg w-50 text-start">
+      👤 View Profile
+    </a>
+
+    <a href="{% url 'view_attendance' %}" class="btn btn-outline-dark btn-lg w-50 text-start">
+      📅 View Attendance
+    </a>
+
+    <a href="{% url 'academic_performance' %}" class="btn btn-outline-dark btn-lg w-50 text-start">
+      📚 Academic Performance
+    </a>
+
+    <a href="{% url 'upload_document' %}" class="btn btn-outline-dark btn-lg w-50 text-start">
+      📄 Upload Documents
+    </a>
+    <a href="{% url 'face_attendance' %}" class="btn btn-outline-dark btn-lg w-50 text-start">🎥 Mark Attendance with Face</a>
+
+  </div>
+</div>
+{% endblock %}

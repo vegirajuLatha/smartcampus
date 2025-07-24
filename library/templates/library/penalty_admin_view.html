@@ -1,0 +1,34 @@
+{% extends 'hostel/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>📋 All User Penalties</h2>
+    {% if penalties %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Book</th>
+                    <th>Amount</th>
+                    <th>Reason</th>
+                    <th>Issued On</th>
+                    <th>Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for penalty in penalties %}
+                <tr>
+                    <td>{{ penalty.user.username }}</td>
+                    <td>{{ penalty.book.title }}</td>
+                    <td>₹{{ penalty.amount }}</td>
+                    <td>{{ penalty.reason }}</td>
+                    <td>{{ penalty.issued_on }}</td>
+                    <td>{{ penalty.is_paid|yesno:"✅,❌" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No penalties issued yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

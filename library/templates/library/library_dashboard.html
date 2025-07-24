@@ -1,0 +1,15 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>📖 Library Dashboard</h2>
+  <ul>
+    <li><a href="{% url 'book-inventory' %}">View Book Inventory</a>
+</li>
+
+    <a href="{% url 'book-inventory' %}">View Books</a>
+    <li><a href="{% url 'borrow-return' %}">Borrow/Return Logs</a></li>
+    <li><a href="{% url 'penalty-tracker' %}">Penalty Tracker</a></li>
+    <li><a href="{% url 'book-recommendation' %}">Book Recommender</a></li>
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+Here is a clear summary of the content:
+
+**About Me**
+Name: Venkata Sai Sri Harini Medicharla
+Contact: +91 7780686696, saisrimedicharla@gmail.com, LinkedIn
+Objective: Seeking opportunities to apply technical skills and gain hands-on experience in software development.
+
+**Education**
+
+* Pursuing BTech in Information Technology from Shri Vishnu Engineering College For Women (2022-2026) with a CGPA of 7.32
+* Completed Intermediate-MPC from Tirumala Junior College (2020-2022) with 77.9% and SSC from Maria Montessori EM High School (2020)
+
+**Technical Skills**
+
+* Programming languages: Java, Python
+* Web technologies: HTML, CSS, JavaScript
+* Database: SQL
+* Soft Skills: Communication, Teamwork, Time management, Adaptability
+
+**Experience**
+
+* Full Stack Java Developer at SkillDzire (Remote)
+	+ Developed RESTful APIs with Spring Boot and integrated databases using Hibernate
+	+ Built front-end applications using HTML, CSS, and JavaScript frameworks
+	+ Gained experience in Git for version control and cloud deployment
+
+**Projects**
+
+* Developed a Gym Website to manage services, showcase facilities, and engage members
+* Analyzed Zomato's restaurant data to predict ratings, identify trends, and extract insights on customer preferences using Python and machine learning models
+
+**Extra-Curricular Activities**
+
+* Participated in contests and attended workshops
+* Interested in watching anime
+
+**Certifications**
+
+* Java Programming Fundamentals Certificate from Infosys
+* Python Basics for Data Science Certificate from edX

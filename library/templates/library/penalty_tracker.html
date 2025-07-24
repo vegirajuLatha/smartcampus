@@ -1,0 +1,51 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-danger mb-4">📛 Penalty Tracker</h2>
+
+    {% if borrowed_books %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>📘 Book</th>
+                    <th>📅 Borrowed Date</th>
+                    <th>📆 Due Date</th>
+                    <th>⏳ Days Left</th>
+                    <th>⚠ Overdue?</th>
+                    <th>💰 Penalty (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in borrowed_books %}
+                <tr>
+                    <td>{{ b.book.title }}</td>
+                    <td>{{ b.borrowed_date|date:"d M Y" }}</td>
+                    <td>{{ b.due_date|date:"d M Y" }}</td>
+                    <td>
+                        {% if b.remaining_days >= 0 %}
+                            <span class="text-success">{{ b.remaining_days }} day(s)</span>
+                        {% else %}
+                            <span class="text-danger">{{ b.abs_remaining_days }} day(s) overdue</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if b.is_overdue %}
+                            <span class="badge bg-danger">Yes</span>
+                        {% else %}
+                            <span class="badge bg-success">No</span>
+                        {% endif %}
+                    </td>
+                    <td class="{% if b.penalty_display > 0 %}text-danger{% else %}text-success{% endif %}">
+                        ₹{{ b.penalty_display }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-info text-center">You don’t have any overdue books or penalties. 🎉</div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'ai_tutor/base.html' %}
+
+{% block content %}
+<style>
+  .voice-upload-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .voice-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #198754;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .btn-success {
+    width: 100%;
+    font-weight: 600;
+  }
+
+  .response-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #198754;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    margin-top: 30px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+</style>
+
+<div class="container">
+  <div class="voice-upload-container">
+    <h2 class="voice-title">🎙 Voice Input</h2>
+    <form id="voiceForm" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="audio" class="form-label">Upload Your Voice (WAV format)</label>
+        <input type="file" class="form-control" id="audio" name="audio" accept=".wav" required>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+    <div class="response-box d-none" id="responseBox">
+      <h5 class="text-success mb-2">🧠 Response:</h5>
+      <div id="responseOutput"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("voiceForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const responseBox = document.getElementById("responseBox");
+    const responseOutput = document.getElementById("responseOutput");
+
+    responseOutput.innerText = "🔄 Processing voice input...";
+    responseBox.classList.remove("d-none");
+
+    fetch("{% url 'voice_api' %}", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      responseOutput.innerText = data.response;
+    })
+    .catch(error => {
+      responseOutput.innerText = "❌ Error: " + error;
+    });
+  });
+</script>
+{% endblock %}

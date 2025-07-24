@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .centered-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+  }
+
+  .dashboard-title {
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #343a40;
+  }
+
+  .card-dashboard {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 0.75rem;
+    background-color: #ffffff;
+  }
+
+  .card-dashboard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #212529;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    color: #6c757d;
+  }
+</style>
+
+<div class="centered-container">
+  <div class="container">
+    <h2 class="dashboard-title text-center">🏨 Hostel Admin Dashboard</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+      <!-- View Complaints -->
+      <div class="col">
+        <a href="{% url 'view-complaints' %}" class="text-decoration-none">
+          <div class="card card-dashboard h-100">
+            <div class="card-body text-center">
+              <h5 class="card-title">📄 View Complaints</h5>
+              <p class="card-text">See complaints submitted by students.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Add Penalty -->
+      <div class="col">
+        <a href="{% url 'add-penalty' %}" class="text-decoration-none">
+          <div class="card card-dashboard h-100">
+            <div class="card-body text-center">
+              <h5 class="card-title">💰 Add Penalty</h5>
+              <p class="card-text">Assign penalties to students.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      Add Visitor
+      <div class="col">
+        <a href="{% url 'add-visitor' %}" class="text-decoration-none">
+          <div class="card card-dashboard h-100">
+            <div class="card-body text-center">
+              <h5 class="card-title">🚶 Add Visitor</h5>
+              <p class="card-text">Log visitor entry for students.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- View Students -->
+      <div class="col">
+        <a href="{% url 'view_visitors' %}">View Visitors</a>
+
+          <div class="card card-dashboard h-100">
+            <div class="card-body text-center">
+              <h5 class="card-title">👨‍🎓 View Students</h5>
+              <p class="card-text">List of all registered hostel students.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
